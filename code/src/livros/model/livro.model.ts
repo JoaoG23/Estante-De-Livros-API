@@ -1,7 +1,18 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  Model,
+  Table,
+  PrimaryKey,
+  AutoIncrement,
+} from 'sequelize-typescript';
 
-@Table
+@Table({ tableName: 'tb_livros' })
 export class Livro extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id: number;
+
   @Column
   nome: string;
 
@@ -15,5 +26,5 @@ export class Livro extends Model {
   autor: string;
 
   @Column
-  numero_paginas: string;
+  numero_paginas: number;
 }

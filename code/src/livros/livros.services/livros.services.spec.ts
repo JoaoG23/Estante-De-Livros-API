@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { LivrosServices } from './livros.services';
+import { livro } from '../../../test/seeds/livros';
 
 describe('LivrosServices', () => {
   let provider: LivrosServices;
@@ -12,7 +13,9 @@ describe('LivrosServices', () => {
     provider = module.get<LivrosServices>(LivrosServices);
   });
 
-  it('should be defined', () => {
-    expect(provider).toBeDefined();
+  it('criar um livro', () => {
+    const criar = provider.create(livro);
+    console.log(criar);
+    expect(criar).not.toBeNull();
   });
 });

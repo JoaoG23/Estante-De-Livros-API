@@ -29,4 +29,12 @@ export class LivrosServices {
     const user = await this.findOne(id);
     await user.destroy();
   }
+  async update(id: string, novoLivroDto: object): Promise<Livro | object> {
+    const dadosAtualizado = await this.livroModel.update(novoLivroDto, {
+      where: { id: id },
+      returning: true,
+    });
+    const extrairDadosDadoAtualizadoBanco = dadosAtualizado[1][0];
+    return extrairDadosDadoAtualizadoBanco;
+  }
 }
